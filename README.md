@@ -1,4 +1,4 @@
-# 🚀 Starterpack Web TypeScript
+# 🚀 Bootstrap-frontend-webapp
 
 A reusable React + TypeScript bootstrap repo designed for rapid prototyping and visual learning. Built with a generative theme system, dev-only tooling, and AI-ready documentation components.
 

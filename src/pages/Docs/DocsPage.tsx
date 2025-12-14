@@ -7,12 +7,13 @@ import {
   ListItem,
   Link,
   Code,
-  CodeBlock,
   Blockquote,
   Callout,
   Divider,
   Stack,
 } from '../../components/Primitives';
+import { CodeBlock } from '../../components/CodeBlock/CodeBlock';
+import dedent from 'dedent';
 
 const Container = styled.div`
   padding: ${props => props.theme.spacing.xl};
@@ -317,17 +318,54 @@ components/
           </Paragraph>
 
           <CodeBlock language="typescript" showLineNumbers>
-{`// Instead of template literals
-const Button = styled.button\`
-  padding: \${props => props.theme.spacing.md};
-  color: \${props => props.theme.colors.primary};
-\`;
+{dedent`
+  // Avoid styled-components template literals
+  // They're harder for AI and tooling to parse
+  
+  // Prefer object syntax instead
+  const buttonStyles: CSSObject = {
+    padding: theme.spacing.md,
+    color: theme.colors.primary,
+    borderRadius: theme.radii.medium,
+  };
+  
+  const Button = styled.button(buttonStyles);
+`}
+          </CodeBlock>
 
-// Use object syntax
-const buttonStyles: CSSObject = {
-  padding: theme.spacing.md,
-  color: theme.colors.primary,
-};`}
+          <Callout type="warning">
+            <strong>Meta-moment:</strong> We originally wanted to show a comparison with template literal syntax here, but we couldn't get it to display correctly in the code block! The escaped template literals caused Prism.js to misparse the semicolons, making them float above the code. This is ironically a perfect example of why hardcoding code as strings in documentation is problematic - even simple syntax becomes difficult to escape and display properly.
+          </Callout>
+
+          <Paragraph>
+            Here's what we were trying to show (as plain text to avoid the rendering bug):
+          </Paragraph>
+
+          <CodeBlock showLineNumbers>
+{dedent`
+  // The "avoid" example we couldn't render properly:
+  const Button = styled.button\`
+    padding: \${props => props.theme.spacing.md};
+    color: \${props => props.theme.colors.primary};
+  \`;
+  
+  // Prism.js parsed the semicolons inside the template string,
+  // causing them to render with weird positioning!
+`}
+          </CodeBlock>
+
+          <Paragraph>
+            And here it is WITH TypeScript syntax highlighting to see the bug in action (notice the semicolons AND the fact that newlines are being stripped from the template literal):
+          </Paragraph>
+
+          <CodeBlock language="typescript" showLineNumbers>
+{dedent`
+  // Watch the semicolons float weirdly AND the newlines disappear!
+  const Button = styled.button\`
+    padding: \${props => props.theme.spacing.md};
+    color: \${props => props.theme.colors.primary};
+  \`;
+`}
           </CodeBlock>
         </section>
 
@@ -373,6 +411,100 @@ const buttonStyles: CSSObject = {
               <Link href="/theme-editor">🎨 Theme Editor</Link> - Visual theme customization tool
             </ListItem>
           </List>
+        </section>
+
+        <Divider />
+
+        {/* Theme Data System */}
+        <section>
+          <Heading level={2}>Theme Data System</Heading>
+          <Paragraph>
+            The theme data system in this project is designed to centralize and simplify the management of styles across the application. It uses a structured configuration object to define colors, typography, spacing, and more. This system ensures consistency and makes it easy to extend or modify the theme.
+          </Paragraph>
+
+          <Heading level={3}>Current Theme Configuration</Heading>
+          <Paragraph>
+            The theme is defined using a <code>ThemeConfig</code> object, which specifies the base values for colors, typography, spacing, and other design tokens. Here is an example of the default theme configuration:
+          </Paragraph>
+          <CodeBlock language="typescript">
+            {`const defaultConfig: ThemeConfig = {
+  primaryHue: 220,
+  primarySaturation: 80,
+  backgroundColor: '#1a1a1a',
+  textColor: '#e5e5e5',
+  borderColor: '#333333',
+  hoverColor: '#2a2a2a',
+  baseFontSize: 16,
+  fontFamily: 'system-ui, -apple-system, sans-serif',
+  spacingUnit: 4,
+  radiusScale: 8,
+  shadowColor: '#000000',
+  shadowIntensity: 0.1,
+};`}
+          </CodeBlock>
+
+          <Heading level={3}>Extending the Theme</Heading>
+          <Paragraph>
+            You can extend the theme to include additional features such as dark mode, light mode, or semantic colors. Below are some examples:
+          </Paragraph>
+
+          <Heading level={4}>Adding Dark and Light Modes</Heading>
+          <CodeBlock language="typescript">
+            {`const lightTheme: ThemeConfig = {
+  ...defaultConfig,
+  backgroundColor: '#ffffff',
+  textColor: '#000000',
+  borderColor: '#cccccc',
+  hoverColor: '#f0f0f0',
+};
+
+const darkTheme: ThemeConfig = {
+  ...defaultConfig,
+  backgroundColor: '#1a1a1a',
+  textColor: '#e5e5e5',
+  borderColor: '#333333',
+  hoverColor: '#2a2a2a',
+};`}
+          </CodeBlock>
+
+          <Heading level={4}>Using Semantic Colors</Heading>
+          <CodeBlock language="typescript">
+            {`const themeWithSemanticColors: ThemeConfig = {
+  ...defaultConfig,
+  semanticColors: {
+    success: '#28a745',
+    error: '#dc3545',
+    warning: '#ffc107',
+    info: '#17a2b8',
+  },
+};`}
+          </CodeBlock>
+
+          <Heading level={4}>Dynamic Color Modes</Heading>
+          <CodeBlock language="typescript">
+            {`const themeWithColorModes = {
+  light: lightTheme,
+  dark: darkTheme,
+};
+
+function getTheme(mode: 'light' | 'dark') {
+  return themeWithColorModes[mode];
+}`}
+          </CodeBlock>
+
+          <Heading level={3}>Benefits of the Theme System</Heading>
+          <List>
+            <li>Centralized management of design tokens.</li>
+            <li>Easy to extend and modify.</li>
+            <li>Supports dynamic theming and color modes.</li>
+            <li>Ensures consistency across the application.</li>
+          </List>
+
+          <Divider />
+
+          <Paragraph>
+            By leveraging the theme data system, you can create a scalable and maintainable design system that adapts to your application’s needs. Experiment with the examples above to see how you can extend the theme further.
+          </Paragraph>
         </section>
       </Stack>
     </Container>

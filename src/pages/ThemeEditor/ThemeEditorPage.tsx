@@ -10,7 +10,6 @@ import {
   SliderTrack,
   SliderRange,
   SliderThumb,
-  CodeBlock,
 } from './components';
 import {
   Heading,
@@ -20,12 +19,12 @@ import {
   ListItem,
   Link,
   Code,
-  CodeBlock as PrimitiveCodeBlock,
   Blockquote,
   Callout,
   Divider,
   Stack,
 } from '../../components/Primitives';
+import { CodeBlock } from '../../components/CodeBlock/CodeBlock';
 
 export function ThemeEditorPage() {
   const { config, theme, updateConfig } = useTheme();
@@ -281,12 +280,12 @@ export function ThemeEditorPage() {
             <Paragraph>
               Inline code example: <Code>const theme = useTheme()</Code>
             </Paragraph>
-            <PrimitiveCodeBlock language="typescript" showLineNumbers>
+            <CodeBlock language="typescript" showLineNumbers>
 {`function example() {
   const theme = useTheme();
   return <div style={{ color: theme.colors.primary }} />;
 }`}
-            </PrimitiveCodeBlock>
+            </CodeBlock>
           </div>
           
           <Divider />

@@ -3,6 +3,7 @@ import { HomePage } from './pages/Home/HomePage';
 import { ThemeEditorPage } from './pages/ThemeEditor/ThemeEditorPage';
 import { DocsPage } from './pages/Docs/DocsPage';
 import { DocsPage2 } from './pages/Docs/DocsPage2';
+import { DocsPage3 } from './pages/Docs/DocsPage3';
 
 export interface Route {
   path: string;
@@ -36,6 +37,12 @@ export const routes: Route[] = [
       path: '/docs/build-log',
       component: DocsPage2,
       label: 'Build Log',
+      devOnly: true,
+    },
+    {
+      path: '/docs/layout-test',
+      component: DocsPage3,
+      label: 'Layout Components',
       devOnly: true,
     },
   ] : []),

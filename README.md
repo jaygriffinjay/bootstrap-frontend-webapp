@@ -1,10 +1,18 @@
 # 🚀 Bootstrap-frontend-webapp
 
+> **TL;DR:** Copy this repo. Drag some sliders for 5 minutes to pick a theme. Start building your actual product. Stop wasting weekends on boilerplate.
+
 A reusable React + TypeScript bootstrap repo designed for rapid prototyping and visual learning. Built with a generative theme system, dev-only tooling, and AI-ready documentation components.
+
+**What you get:** Interactive theme editor • 10+ content primitives • Syntax-highlighted code blocks • Dev-only routes that vanish in production • Zero config needed
 
 ## Philosophy
 
 This isn't just another React starter template. It's a **personal bootstrap repo** meant to be copied and reused across multiple projects. The goal: stop wasting time on boilerplate and start building features immediately.
+
+**The Problem:** Most projects spend the first 2 days setting up themes, routing, basic components, and dev tooling. Then you copy-paste that setup into your next project and tweak it slightly.
+
+**The Solution:** Start at 50% instead of 0%. This repo is pre-loaded with the boring stuff done right.
 
 ### Key Ideas
 

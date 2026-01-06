@@ -1,6 +1,11 @@
 import { css } from '@emotion/react';
 
 export const codeBlockTheme = css`
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1.5rem 0;
+
   pre[class*="language-"],
   code[class*="language-"] {
     color: #d4d4d4;
@@ -39,7 +44,7 @@ export const codeBlockTheme = css`
 
   pre[class*="language-"] {
     padding: 1em;
-    margin: .5em 0;
+    margin: 0;
     overflow: auto !important;
     background: #1e1e1e;
   }

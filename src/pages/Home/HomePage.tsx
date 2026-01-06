@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Link as RouterLink } from 'react-router-dom';
-import { Heading, Paragraph, Stack, Text } from '../../components/Primitives';
+import { Heading, Paragraph, Stack, Text, List, ListItem } from '../../components/Primitives';
 
 const Container = styled.div`
   padding: ${props => props.theme.spacing.xl};
@@ -70,13 +70,13 @@ export function HomePage() {
         <Card>
           <Stack spacing="md">
             <Heading level={2}>Tech Stack</Heading>
-            <Stack as="ul" spacing="xs">
-              <li>⚛️ React 19</li>
-              <li>📘 TypeScript</li>
-              <li>🎨 Emotion (CSS-in-JS)</li>
-              <li>🧩 Radix UI Primitives</li>
-              <li>⚡ Vite</li>
-            </Stack>
+            <List>
+              <ListItem>⚛️ React 19</ListItem>
+              <ListItem>📘 TypeScript</ListItem>
+              <ListItem>🎨 Emotion (CSS-in-JS)</ListItem>
+              <ListItem>🧩 Radix UI Primitives</ListItem>
+              <ListItem>⚡ Vite</ListItem>
+            </List>
           </Stack>
         </Card>
       </Stack>

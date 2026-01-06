@@ -124,7 +124,7 @@ const Ol = styled.ol`
   color: ${props => props.theme.colors.text};
   line-height: 1.6;
   margin-bottom: ${props => props.theme.spacing.md};
-  padding-left: ${props => props.theme.spacing.md};
+  padding-left: ${props => props.theme.spacing.xl};
   list-style-type: decimal;
 
   &:last-child {

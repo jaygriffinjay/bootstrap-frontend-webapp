@@ -19,10 +19,11 @@ interface CodeBlockProps {
   children: string;
   showLineNumbers?: boolean; // Currently not implemented
   showHeader?: boolean; // Show language label and copy button
+  maxHeight?: string;
 }
 
 // Ensure Prism.js highlights the code correctly
-export function CodeBlock({ language, children, showHeader = true }: CodeBlockProps) {
+export function CodeBlock({ language, children, showHeader = true, maxHeight }: CodeBlockProps) {
   const codeRef = useRef<HTMLElement>(null);
   const [copied, setCopied] = useState(false);
 
@@ -66,7 +67,7 @@ export function CodeBlock({ language, children, showHeader = true }: CodeBlockPr
           </button>
         </div>
       )}
-      <pre className={`language-${language || 'text'}`}>
+      <pre className={`language-${language || 'text'}`} style={maxHeight ? { maxHeight } : undefined}>
         <code ref={codeRef} className={`language-${language || 'text'}`}>
           {children}
         </code>
